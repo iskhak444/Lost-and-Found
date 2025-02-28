@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login / Signup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="container">
+  <!-- The checkbox will act as our toggle for sign-in/sign-up -->
+  <input type="checkbox" id="toggle" aria-hidden="true">
+
+  <!-- Sign In Form -->
+  <div class="form sign-in">
+    <form>
+      <h2>Sign In</h2>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="Enter your email" required />
+      
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="Enter your password" required />
+      
+      <button type="submit">Sign In</button>
+      <p class="forgot">Forgot your password?</p>
+    </form>
+  </div>
+
+  <!-- Sign Up Form -->
+  <div class="form sign-up">
+    <form>
+      <h2>Create Account</h2>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" placeholder="Create a username" required />
+      
+      <label for="email-up">Email</label>
+      <input type="email" name="email-up" id="email-up" placeholder="Enter your email" required />
+      
+      <label for="password-up">Password</label>
+      <input type="password" name="password-up" id="password-up" placeholder="Create a password" required />
+      
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Overlay Panels (toggle prompt) -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <!-- Left panel for sign-in -->
+      <div class="overlay-panel overlay-left">
+        <h2>Hello, Friend!</h2>
+        <p>Enter your personal details to start your journey with us</p>
+        <label for="toggle" class="switch-btn">Sign Up</label>
+      </div>
+      <!-- Right panel for sign-up -->
+      <div class="overlay-panel overlay-right">
+        <h2>Welcome Back!</h2>
+        <p>To keep connected with us please sign in with your personal info</p>
+        <label for="toggle" class="switch-btn">Sign In</label>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+</body>
+</html>

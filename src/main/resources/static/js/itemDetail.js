@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
       // 3. Populate the page with the item’s details
       document.getElementById("itemId").textContent = item.itemId || "";
-      document.getElementById("itemName").textContent = "Item ID: " + item.itemName || "Unknown";
+      document.getElementById("itemName").textContent = "Item Name: " + item.itemName || "Unknown";
       document.getElementById("itemType").textContent = "Item Type: " + item.itemType || "Unknown";
       document.getElementById("itemStatus").textContent = "Status: " +item.status || "Unknown";
       document.getElementById("itemDescription").textContent = "Description: " + item.description || "Unknown";

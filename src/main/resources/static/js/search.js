@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (status) url += `status=${status}&`;
         if (date) url += `filterDate=${date}&`;
   
-        // remove any lingering '&' 
         url = url.endsWith('&') ? url.slice(0, -1) : url;
         fetch(url)
             .then(response => response.json())

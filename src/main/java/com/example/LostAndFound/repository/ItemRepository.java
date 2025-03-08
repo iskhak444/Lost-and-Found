@@ -68,12 +68,12 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // Find items by item type and status
     List<Item> findAllByItemTypeContainingIgnoreCaseAndStatus(
             String itemType, ItemStatus status);
-
+        
+     // Find items by status
+    List<Item> findAllByStatus(ItemStatus status);
+        
     // Find items by item type
     List<Item> findAllByItemTypeContainingIgnoreCase(String itemType);
-
-    // Find items by status
-    List<Item> findAllByStatus(ItemStatus status);
 
     // Find items reported after a specific date
     List<Item> findAllByDateReportedAfter(LocalDateTime dateReported);

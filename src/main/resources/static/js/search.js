@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Store the selected item's details in localStorage on click
         row.addEventListener("click", () => {
             localStorage.setItem("selectedItem", JSON.stringify(item));
-            window.location.href = "itemDetails.html"; // Redirect to details page
+            window.location.href = "itemDetails.html"; 
         });
 
         tableBody.appendChild(row);

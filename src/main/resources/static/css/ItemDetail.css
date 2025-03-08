@@ -135,3 +135,26 @@
     background: #00b4db;
 }
 
+
+.item-details-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+}
+
+#back-btn {
+    background: none;
+    border: none;
+    color: grey;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#back-btn .back-arrow {
+    width: 30px; 
+    margin-right: 5px;
+}
+

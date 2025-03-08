@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details | Lost & Found</title>
-    <link rel="stylesheet" href="./css/itemDetail.css"> <!-- Link to your existing CSS -->
+    <link rel="stylesheet" href="./css/itemDetail.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar (Same as Dashboard) -->
         <div class="sidebar">
             <div class="sidebar-header">
                 <h2>Lost & Found System</h2>
             </div>
             <ul class="sidebar-nav">
-                <li class="nav-item">Dashboard</li>
+                <li class="nav-item">Home</li>
                 <li class="nav-item">Report Items</li>
                 <li class="nav-item">Search Items</li>
                 <li class="nav-item">Profile Settings</li>
@@ -27,6 +26,12 @@
         <div class="main-content">
             <div class="welcome-section">
                 <h1>Item Details</h1>
+                <div class="item-details-header">
+                    <button id="back-btn">
+                        <img src="./images/grey.png" alt="Back" class="back-arrow"> Back
+                    </button>
+                </div>
+                
             </div>
 
             <!-- Item Details -->
@@ -38,15 +43,17 @@
                         <img src="./images/front2.jpg" alt="Thumbnail 2">
                     </div>
                 </div>
-                <div class="detailsContainer">
-                    <h2>Black Leather Wallet</h2>
-                    <p><strong>Description:</strong> A black leather wallet with a zipper compartment.</p>
-                    <p><strong>Location:</strong> Main Library</p>
-                    <p><strong>Date Lost/Found:</strong> 2023-12-01</p>
-                    <p><strong>Status:</strong> Lost</p>
-                    <p><strong>Reported By:</strong> <a href="#">Aoun Jee</a></p>
+                <div class="item-info">
+                    <h2 id="itemName">Black Leather Wallet</h2>
+                    <p id="itemId"><strong>Item ID:</strong> </p>
+                    <p id="itemType"><strong>Item Type:</strong> </p>
+                    <p id="itemStatus"><strong>Status:</strong> </p>
+                    <p id="itemDescription"><strong>Description:</strong> </p>
+                    <p id="itemLocation"><strong>Location:</strong> </p>
+                    <p id="itemDate"><strong>Date Lost/Found:</strong> </p>
+                    <p><strong>Reported By:</strong> <a href="#">Jacob Smith</a></p>
                     <button class="action-btn">Claim Item</button>
-                    <button id = "email-btn" class="action-btn">Email User</button>
+                    <button id="email-btn" class="action-btn">Email User</button>
                 </div>
             </div>
         </div>

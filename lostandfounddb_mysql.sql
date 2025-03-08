@@ -24,19 +24,24 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS items (
   item_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,              -- user who posted the item
+  -- category_id INT NULL,              -- optional category reference
   item_name VARCHAR(100) NOT NULL,
   item_type VARCHAR(100) NOT NULL,
   description TEXT,
   location VARCHAR(100),
   status ENUM('lost','found','claimed','returned') DEFAULT 'lost',
   date_reported TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  image_path VARCHAR(255),
+  item_image longblob,
 
   CONSTRAINT fk_item_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 
+   -- CONSTRAINT fk_item_category
+   -- FOREIGN KEY (category_id) REFERENCES categories(category_id)
+   -- ON DELETE SET NULL
+   -- ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS claims (
@@ -132,16 +137,16 @@ INSERT INTO users (first_name, last_name, username, email, password, date_of_bir
 
 
 
-INSERT INTO items (user_id, item_name, item_type, description, location, status, image_path) VALUES
-(1, 'Black Wallet', 'Personal Item', 'A black leather wallet with multiple cards inside.', 'Library', 'lost', 'images/wallet.jpg'),
-(2, 'iPhone 12', 'Electronics', 'White iPhone 12 with a cracked screen.', 'Cafeteria', 'found', 'images/iphone12.jpg'),
-(3, 'Red Backpack', 'Bag', 'A red backpack containing books and a laptop.', 'Lecture Hall 3', 'lost', 'images/backpack.jpg'),
-(4, 'Car Keys', 'Accessories', 'Set of car keys with a Toyota logo keychain.', 'Parking Lot', 'lost', 'images/carkeys.jpg'),
-(5, 'Silver Bracelet', 'Jewelry', 'Silver bracelet with an engraved name.', 'Gym', 'found', 'images/bracelet.jpg'),
-(6, 'Dell Laptop', 'Electronics', 'Dell Inspiron laptop with charger.', 'Computer Lab', 'lost', 'images/laptop.jpg'),
-(7, 'Sunglasses', 'Accessories', 'Ray-Ban sunglasses with black frames.', 'Student Lounge', 'found', 'images/sunglasses.jpg'),
-(8, 'Physics Notebook', 'Stationery', 'Physics notebook with important notes.', 'Library', 'returned', 'images/notebook.jpg'),
-(9, 'Bluetooth Earbuds', 'Electronics', 'Black Bluetooth earbuds in a charging case.', 'Bus Stop', 'lost', 'images/earbuds.jpg'),
-(10, 'Hoodie', 'Clothing', 'Grey hoodie with a university logo on the chest.', 'Sports Complex', 'claimed', 'images/hoodie.jpg');
+INSERT INTO items (user_id, item_name, item_type, description, location, status, item_image) VALUES
+(1, 'Black Wallet', 'Personal Item', 'A black leather wallet with multiple cards inside.', 'Library', 'lost', '.front2.jpg'),
+(2, 'iPhone 12', 'Electronics', 'White iPhone 12 with a cracked screen.', 'Cafeteria', 'found', '.front2.jpg'),
+(3, 'Red Backpack', 'Bag', 'A red backpack containing books and a laptop.', 'Lecture Hall 3', 'lost', '.front2.jpg'),
+(4, 'Car Keys', 'Accessories', 'Set of car keys with a Toyota logo keychain.', 'Parking Lot', 'lost', '.front2.jpg'),
+(5, 'Silver Bracelet', 'Jewelry', 'Silver bracelet with an engraved name.', 'Gym', 'found', '.front2.jpg'),
+(6, 'Dell Laptop', 'Electronics', 'Dell Inspiron laptop with charger.', 'Computer Lab', 'lost', '.front2.jpg'),
+(7, 'Sunglasses', 'Accessories', 'Ray-Ban sunglasses with black frames.', 'Student Lounge', 'found', '.front2.jpg'),
+(8, 'Physics Notebook', 'Stationery', 'Physics notebook with important notes.', 'Library', 'returned', '.front2.jpg'),
+(9, 'Bluetooth Earbuds', 'Electronics', 'Black Bluetooth earbuds in a charging case.', 'Bus Stop', 'lost', 'front2.jpg'),
+(10, 'Hoodie', 'Clothing', 'Grey hoodie with a university logo on the chest.', 'Sports Complex', 'claimed', 'front2.jpg');
 
 

@@ -22,7 +22,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
                i.location AS location,
                i.date_reported AS dateReported,
                i.status AS status,
-               i.image_path AS imagePath,
+               i.item_image AS imagePath,
                u.username AS username
         FROM items i
         JOIN users u ON i.user_id = u.user_id

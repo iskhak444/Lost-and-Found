@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tableBody = document.getElementById("foundReportsTableBody");
 
   try {
-      const response = await fetch("http://localhost:8080/api/items/found"); // Adjust API URL if needed
+      const response = await fetch("http://localhost:8080/api/items/found"); 
       if (!response.ok) 
         throw new Error("Failed to fetch lost items");
 

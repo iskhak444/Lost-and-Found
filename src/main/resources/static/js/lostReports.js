@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td>${item.itemId}</td>
               <td>${item.itemName}</td>
               <td>${item.itemType}</td>
-              <td>${item.description || "No description"}</td> <!-- Handle null values -->
-              <td>${item.location || "Unknown"}</td>           <!-- Handle null values -->
+              <td>${item.description || "No description"}</td> 
+              <td>${item.location || "Unknown"}</td>           
               <td>${new Date(item.dateReported).toLocaleDateString()}</td>
               <td>${item.username || "No user"}</td>
           `;

@@ -129,6 +129,60 @@
     border-bottom: 1px solid #eee;
 }
 
+
+.recent-activity {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.recent-activity h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+thead {
+    background: #0083b0;
+    color: #fff;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tbody tr:hover {
+    background: #f1f1f1;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    color: #555;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .dashboard-container {

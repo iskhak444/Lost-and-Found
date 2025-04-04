@@ -31,7 +31,6 @@
                         <img src="./images/grey.png" alt="Back" class="back-arrow"> Back
                     </button>
                 </div>
-                
             </div>
 
             <!-- Item Details -->
@@ -45,12 +44,12 @@
                 </div>
                 <div class="item-info">
                     <h2 id="itemName">Black Leather Wallet</h2>
-                    <p id="itemId"><strong>Item Name:</strong> </p>
-                    <p id="itemType"><strong>Item Type:</strong> </p>
-                    <p id="itemStatus"><strong>Status:</strong> </p>
-                    <p id="itemDescription"><strong>Description:</strong> </p>
-                    <p id="itemLocation"><strong>Location:</strong> </p>
-                    <p id="itemDate"><strong>Date Lost/Found:</strong> </p>
+                    <p id="itemId"><strong>Item Name:</strong></p>
+                    <p id="itemType"><strong>Item Type:</strong></p>
+                    <p id="itemStatus"><strong>Status:</strong></p>
+                    <p id="itemDescription"><strong>Description:</strong></p>
+                    <p id="itemLocation"><strong>Location:</strong></p>
+                    <p id="itemDate"><strong>Date Lost/Found:</strong></p>
                     <p><strong>Reported By:</strong> <a href="#">Jacob Smith</a></p>
                     <button class="action-btn">Claim Item</button>
                     <button id="email-btn" class="action-btn">Email User</button>
@@ -58,7 +57,30 @@
             </div>
         </div>
     </div>
-    <script src = "./js/script.js"></script>
-    <script src = "./js/itemDetail.js"></script>
+    
+    <!-- Claim Modal (Hidden by default) -->
+    <!-- Claim Modal -->
+    <div id="claimModal" class="modal">
+        <div class="modal-content">
+        <h2>Claim Item</h2>
+        <p>If you’re sure this item belongs to you, please provide proof such as a picture or a detailed description. Our team will review your claim.</p>
+        
+        <label for="claimDescription">Description (required):</label>
+        <textarea id="claimDescription" placeholder="Explain why this item is yours..."></textarea>
+    
+        <!-- Add this file input for image upload -->
+        <label for="claimImage">Upload an image (optional):</label>
+        <input type="file" id="claimImage" accept="image/*" />
+    
+        <div class="modal-buttons">
+            <button id="submitClaimBtn">Submit Claim</button>
+            <button id="cancelClaimBtn">Cancel</button>
+        </div>
+        </div>
+    </div>
+  
+
+    <script src="./js/script.js"></script>
+    <script src="./js/itemDetail.js"></script>
 </body>
 </html>

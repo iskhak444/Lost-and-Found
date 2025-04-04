@@ -10,8 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginError = document.getElementById("loginError");
     const signupError = document.getElementById("signupError");
 
+    // 1) Grab the Forgot Password link and modal elements
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+    const forgotPasswordModal = document.getElementById("forgotPasswordModal");
+    const forgotPasswordSaveBtn = document.getElementById("forgotPasswordSaveBtn");
+    const forgotPasswordCancelBtn = document.getElementById("forgotPasswordCancelBtn");
+    const fpEmail = document.getElementById("fpEmail");
+    const fpNewPassword = document.getElementById("fpNewPassword");
+    const fpConfirmPassword = document.getElementById("fpConfirmPassword");
+    const forgotPasswordError = document.getElementById("forgotPasswordError");
+
     signupForm.querySelectorAll('input').forEach(input => input.value = '');
     loginForm.querySelectorAll('input').forEach(input => input.value = '');
+
     // show Toast Notifications
     function showToast(message, type) {
         const toastContainer = document.getElementById('toast-container');
@@ -166,5 +177,64 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // 2) Forgot Password Link -> Show Modal
+    forgotPasswordLink.addEventListener("click", () => {
+        // Clear fields/errors each time the modal opens
+        fpEmail.value = "";
+        fpNewPassword.value = "";
+        fpConfirmPassword.value = "";
+        forgotPasswordError.textContent = "";
+
+        // Show the modal
+        forgotPasswordModal.classList.remove("hidden");
+    });
+
+    // 3) Cancel Button -> Hide Modal
+    forgotPasswordCancelBtn.addEventListener("click", () => {
+        forgotPasswordModal.classList.add("hidden");
+    });
+
+    // 4) Save Button -> Call the backend
+    forgotPasswordSaveBtn.addEventListener("click", async () => {
+        forgotPasswordError.textContent = "";
+
+        const email = fpEmail.value.trim();
+        const newPassword = fpNewPassword.value.trim();
+        const confirmNewPassword = fpConfirmPassword.value.trim();
+
+        // Basic validations
+        if (!email || !newPassword || !confirmNewPassword) {
+            forgotPasswordError.textContent = "Please fill all fields.";
+            return;
+        }
+        if (newPassword !== confirmNewPassword) {
+            forgotPasswordError.textContent = "New password and confirm password do not match.";
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8080/api/users/forgot-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, newPassword }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // e.g., { "message": "Password reset successful!" }
+                alert(data.message || "Password reset successful!");
+                forgotPasswordModal.classList.add("hidden");
+            } else {
+                // handle error response
+                const errorData = await response.json();
+                forgotPasswordError.textContent = errorData.error || "Password reset failed.";
+            }
+        } catch (error) {
+            console.error(error);
+            forgotPasswordError.textContent = "Server error. Please try again later.";
+        }
+    });
+
     btnLogin.click();
 });
+

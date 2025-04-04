@@ -1,13 +1,14 @@
 package com.example.LostAndFound.service;
 
-import com.example.LostAndFound.entity.User;
-import com.example.LostAndFound.repository.UserRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-import java.util.List;
+import com.example.LostAndFound.entity.User;
+import com.example.LostAndFound.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -148,4 +149,25 @@ public class UserService {
             return false;
         }
     }
+
+    public String forgotPassword(String email, String newPassword) {
+        // 1) Look up user by email
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            return "User not found";
+        }
+    
+        // 2) Validate new password length, etc.
+        if (newPassword.length() < 6) {
+            return "Password too short";
+        }
+    
+        // 3) Update password
+        User user = optionalUser.get();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    
+        return "Password reset successful!";
+    }
+    
 }

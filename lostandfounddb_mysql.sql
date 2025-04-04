@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS claims (
   claimer_id INT NOT NULL,
   claim_status ENUM('pending','approved','rejected') DEFAULT 'pending',
   claim_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  claim_description TEXT,
+  claim_image LONGBLOB,
 
   CONSTRAINT fk_claim_item
     FOREIGN KEY (item_id) REFERENCES items(item_id)

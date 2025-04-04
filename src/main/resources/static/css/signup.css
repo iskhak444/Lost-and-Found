@@ -230,6 +230,42 @@ button[type="submit"]:hover {
   transform: translateX(0);
 }
 
+#forgotPasswordLink {
+  cursor: pointer;
+  text-decoration: underline; /* optional, just to style like a link */
+}
+
+
+.modal {
+  position: fixed; 
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.4); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  z-index: 9999; 
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #fff; 
+  padding: 20px; 
+  border-radius: 8px; 
+  min-width: 300px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+
 /* Tablet view */
 @media (max-width: 768px) {
   .container {

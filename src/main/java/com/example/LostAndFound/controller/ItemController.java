@@ -1,8 +1,8 @@
 package com.example.LostAndFound.controller;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.LostAndFound.dto.DashboardResponse;
 import com.example.LostAndFound.dto.LostItemView;
 import com.example.LostAndFound.entity.Item;
 import com.example.LostAndFound.entity.ItemStatus;
@@ -42,6 +42,12 @@ public class ItemController {
     @GetMapping("/lost-old")
     public List<Item> getLostItemsOld() {
     return itemRepository.findByStatus(ItemStatus.claimed);
+    }
+
+    @GetMapping("/dashboard")
+    public ResponseEntity<DashboardResponse> getDashboardData(@RequestParam("userId") Long userId) {
+        DashboardResponse response = itemService.getDashboardData(userId);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/lost")
@@ -97,7 +103,7 @@ public class ItemController {
     }
     
     
-    @PutMapping("/{id}/claim")
+    @PostMapping("/{id}/claim")
     public ResponseEntity<String> claimItem(@PathVariable Long id) {
         boolean success = itemService.claimItem(id);
         if (success) {

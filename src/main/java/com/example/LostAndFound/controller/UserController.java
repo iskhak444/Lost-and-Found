@@ -1,7 +1,11 @@
 package com.example.LostAndFound.controller;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.LostAndFound.dto.DashboardResponse;
+import com.example.LostAndFound.dto.ForgotPasswordRequest;
 import com.example.LostAndFound.dto.LoginRequest;
 import com.example.LostAndFound.dto.PasswordChangeRequest;
 import com.example.LostAndFound.entity.User;
-// import com.example.LostAndFound.repository.UserRepository;
 import com.example.LostAndFound.service.ItemService;
 import com.example.LostAndFound.service.UserService;
 
@@ -186,4 +190,42 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing file");
         }
     }
+
+   @PostMapping("/forgot-password")
+public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    // 1) Validate inputs
+    if (request.getEmail() == null || request.getEmail().trim().isEmpty()) {
+        return ResponseEntity
+                .badRequest()
+                .body(Collections.singletonMap("error", "Email is required"));
+    }
+    if (request.getNewPassword() == null || request.getNewPassword().trim().isEmpty()) {
+        return ResponseEntity
+                .badRequest()
+                .body(Collections.singletonMap("error", "New password is required"));
+    }
+    
+    // 2) Attempt to reset the password
+    try {
+        String result = userService.forgotPassword(request.getEmail(), request.getNewPassword());
+        if ("User not found".equals(result)) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error", "User not found with that email."));
+        } else if ("Password too short".equals(result)) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(Collections.singletonMap("error", "New password must be at least 6 characters."));
+        } else {
+            // success
+            return ResponseEntity.ok(Collections.singletonMap("message", "Password reset successful!"));
+        }
+    } catch (Exception e) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Collections.singletonMap("error", "An error occurred while resetting the password."));
+    }
+}
+
+
 }
